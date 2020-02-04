@@ -109,5 +109,87 @@ class ViewController: UIViewController {
         resetBoard()
     }
     
+    
+    func handleFirstButton(){
+        let currentMove = board.game.currentMove
+        if currentMove > 0 {
+            clearBoard()
+            board.setCurrentMove(currentMove: 0)
+            board.setCurrentPlayer(currentPlayer: board.game.moves[0].player)
+            handleLabelInfo()
+        }
+    }
+    
+    @IBAction func onButtonFirstPressed(_ sender: UIButton) {
+        handleFirstButton()
+    }
+    
+    func handleButtonBack(){
+        guard let currentMove = board.currentMove else {return}
+        if currentMove > 0{
+            let move = board.game.moves[currentMove - 1]
+            clearButton(move: move)
+            board.clearOneCell(row: move.row, column: move.column)
+            board.setCurrentMove(currentMove: currentMove - 1)
+            board.setState(state: move.state)
+            board.flipSide()
+            handleLabelInfo()
+        }
+    }
+    
+    @IBAction func onButtonBackPressed(_ sender: UIButton) {
+        handleButtonBack()
+    }
+    
+    func handleNextButton(){
+        guard let currentMove = board.currentMove else {return}
+        if currentMove < board.game.moves.count{
+            let move = board.game.moves[currentMove]
+            fillButton(move: move)
+            board.fillOneCell(player: move.player, row: move.row, column: move.column)
+            board.setCurrentMove(currentMove: currentMove + 1)
+            board.setState(state: move.state)
+            board.flipSide()
+            handleLabelEachMove(move: move)
+        }
+    }
+    
+    @IBAction func onButtonNextPressed(_ sender: UIButton) {
+        handleNextButton()
+    }
+    
+    func handleButtonLast(){
+        guard let currentMove = board.currentMove else {return}
+        let numOfMoves = board.game.moves.count
+        if currentMove < numOfMoves{
+            for i in currentMove..<numOfMoves{
+                let move = board.game.moves[i]
+                fillButton(move: move)
+                board.fillOneCell(player: move.player, row: move.row, column: move.column)
+                board.flipSide()
+                board.setState(state: move.state)
+                handleLabelEachMove(move: move)
+            }
+            board.setCurrentMove(currentMove: numOfMoves)
+        }
+    }
+    
+    @IBAction func onButtonLastPressed(_ sender: UIButton) {
+        handleButtonLast()
+    }
+    
 }
+
+
+
+
+
+
+
+
+
+
+
+
+
 

@@ -146,6 +146,10 @@ class Board{
         self.state = state
     }
     
+    func setCurrentPlayer(currentPlayer:Player){
+        self.currentPlayer = currentPlayer
+    }
+    
 }
 
 

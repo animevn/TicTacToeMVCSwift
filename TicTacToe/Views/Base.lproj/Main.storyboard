@@ -16,10 +16,10 @@
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
                             <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="msO-3t-7ft">
-                                <rect key="frame" x="1" y="45" width="373" height="147"/>
+                                <rect key="frame" x="1" y="45" width="373" height="122.5"/>
                                 <subviews>
                                     <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Label" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="QPY-rh-WUp">
-                                        <rect key="frame" x="10" y="58.5" width="353" height="30"/>
+                                        <rect key="frame" x="10" y="46.5" width="353" height="30"/>
                                         <fontDescription key="fontDescription" type="system" weight="heavy" pointSize="25"/>
                                         <color key="textColor" red="0.68627450980000004" green="0.32156862749999998" blue="0.87058823529999996" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                                         <nil key="highlightedColor"/>
@@ -33,10 +33,10 @@
                                 </constraints>
                             </view>
                             <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="I4j-ef-bbC">
-                                <rect key="frame" x="0.0" y="193" width="375" height="374"/>
+                                <rect key="frame" x="0.0" y="168.5" width="375" height="374"/>
                                 <subviews>
                                     <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="mAv-Ux-KB7">
-                                        <rect key="frame" x="9.5" y="8" width="356" height="358.5"/>
+                                        <rect key="frame" x="9.5" y="8" width="356" height="358"/>
                                         <subviews>
                                             <stackView opaque="NO" contentMode="scaleToFill" spacing="1" translatesAutoresizingMaskIntoConstraints="NO" id="6z8-wE-u3R">
                                                 <rect key="frame" x="1" y="1" width="354" height="118"/>
@@ -193,15 +193,89 @@
                                     <constraint firstItem="mAv-Ux-KB7" firstAttribute="width" secondItem="I4j-ef-bbC" secondAttribute="width" multiplier="0.95" id="tEc-7o-qsZ"/>
                                 </constraints>
                             </view>
+                            <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="zKZ-TY-Ofj">
+                                <rect key="frame" x="0.0" y="544" width="375" height="113"/>
+                                <subviews>
+                                    <stackView opaque="NO" contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="4k7-mi-HD5">
+                                        <rect key="frame" x="10" y="10" width="355" height="93"/>
+                                        <subviews>
+                                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="9bM-7y-YxB">
+                                                <rect key="frame" x="0.0" y="0.0" width="89" height="93"/>
+                                                <fontDescription key="fontDescription" type="system" pointSize="45"/>
+                                                <state key="normal">
+                                                    <string key="title">⏮
+skip backward symbol
+Unicode: U+23EE, UTF-8: E2 8F AE</string>
+                                                </state>
+                                                <connections>
+                                                    <action selector="onButtonFirstPressed:" destination="BYZ-38-t0r" eventType="touchUpInside" id="i5c-gL-pw6"/>
+                                                </connections>
+                                            </button>
+                                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="Rl7-Fs-0g5">
+                                                <rect key="frame" x="89" y="0.0" width="88.5" height="93"/>
+                                                <fontDescription key="fontDescription" type="system" pointSize="45"/>
+                                                <state key="normal">
+                                                    <string key="title">◀️
+left-pointing triangle
+Unicode: U+25C0 U+FE0F, UTF-8: E2 97 80 EF B8 8F</string>
+                                                </state>
+                                                <connections>
+                                                    <action selector="onButtonBackPressed:" destination="BYZ-38-t0r" eventType="touchUpInside" id="EeR-3Q-AQB"/>
+                                                </connections>
+                                            </button>
+                                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="m3D-bZ-mU2">
+                                                <rect key="frame" x="177.5" y="0.0" width="89" height="93"/>
+                                                <fontDescription key="fontDescription" type="system" pointSize="45"/>
+                                                <state key="normal">
+                                                    <string key="title">▶️
+right-pointing triangle
+Unicode: U+25B6 U+FE0F, UTF-8: E2 96 B6 EF B8 8F</string>
+                                                </state>
+                                                <connections>
+                                                    <action selector="onButtonNextPressed:" destination="BYZ-38-t0r" eventType="touchUpInside" id="x7L-pI-Xeh"/>
+                                                </connections>
+                                            </button>
+                                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="IlP-7v-cZj">
+                                                <rect key="frame" x="266.5" y="0.0" width="88.5" height="93"/>
+                                                <fontDescription key="fontDescription" type="system" pointSize="45"/>
+                                                <state key="normal">
+                                                    <string key="title">⏭
+skip forward symbol
+Unicode: U+23ED, UTF-8: E2 8F AD</string>
+                                                </state>
+                                                <connections>
+                                                    <action selector="onButtonLastPressed:" destination="BYZ-38-t0r" eventType="touchUpInside" id="ZEj-3s-omm"/>
+                                                </connections>
+                                            </button>
+                                        </subviews>
+                                        <constraints>
+                                            <constraint firstItem="9bM-7y-YxB" firstAttribute="width" secondItem="4k7-mi-HD5" secondAttribute="width" multiplier="0.25" id="I4A-kc-63S"/>
+                                            <constraint firstItem="m3D-bZ-mU2" firstAttribute="width" secondItem="4k7-mi-HD5" secondAttribute="width" multiplier="0.25" id="PxO-hr-gHB"/>
+                                            <constraint firstItem="Rl7-Fs-0g5" firstAttribute="width" secondItem="4k7-mi-HD5" secondAttribute="width" multiplier="0.25" id="bnx-98-u13"/>
+                                        </constraints>
+                                    </stackView>
+                                </subviews>
+                                <color key="backgroundColor" systemColor="systemBackgroundColor" cocoaTouchSystemColor="whiteColor"/>
+                                <constraints>
+                                    <constraint firstAttribute="trailing" secondItem="4k7-mi-HD5" secondAttribute="trailing" constant="10" id="HK2-vY-9GM"/>
+                                    <constraint firstItem="4k7-mi-HD5" firstAttribute="top" secondItem="zKZ-TY-Ofj" secondAttribute="top" constant="10" id="cxe-6n-wEm"/>
+                                    <constraint firstAttribute="bottom" secondItem="4k7-mi-HD5" secondAttribute="bottom" constant="10" id="pVB-Lc-nDw"/>
+                                    <constraint firstItem="4k7-mi-HD5" firstAttribute="leading" secondItem="zKZ-TY-Ofj" secondAttribute="leading" constant="10" id="vFf-dN-4Q8"/>
+                                </constraints>
+                            </view>
                         </subviews>
                         <color key="backgroundColor" systemColor="systemBackgroundColor" cocoaTouchSystemColor="whiteColor"/>
                         <constraints>
                             <constraint firstItem="6Tk-OE-BBY" firstAttribute="trailing" secondItem="I4j-ef-bbC" secondAttribute="trailing" id="0si-7c-1W4"/>
+                            <constraint firstItem="zKZ-TY-Ofj" firstAttribute="leading" secondItem="6Tk-OE-BBY" secondAttribute="leading" id="0xl-T2-1VA"/>
                             <constraint firstItem="6Tk-OE-BBY" firstAttribute="trailing" secondItem="msO-3t-7ft" secondAttribute="trailing" constant="1" id="39M-uo-3yc"/>
+                            <constraint firstItem="I4j-ef-bbC" firstAttribute="centerY" secondItem="6Tk-OE-BBY" secondAttribute="centerY" id="C9J-fl-std"/>
+                            <constraint firstItem="zKZ-TY-Ofj" firstAttribute="trailing" secondItem="6Tk-OE-BBY" secondAttribute="trailing" id="CXh-JO-iR8"/>
                             <constraint firstItem="I4j-ef-bbC" firstAttribute="top" secondItem="msO-3t-7ft" secondAttribute="bottom" constant="1" id="Pmp-Zp-uR6"/>
+                            <constraint firstItem="6Tk-OE-BBY" firstAttribute="bottom" secondItem="zKZ-TY-Ofj" secondAttribute="bottom" constant="10" id="TcB-vu-GkP"/>
                             <constraint firstItem="msO-3t-7ft" firstAttribute="leading" secondItem="6Tk-OE-BBY" secondAttribute="leading" constant="1" id="bZM-bQ-tHP"/>
                             <constraint firstItem="msO-3t-7ft" firstAttribute="top" secondItem="6Tk-OE-BBY" secondAttribute="top" constant="1" id="bsE-vn-cA0"/>
-                            <constraint firstItem="6Tk-OE-BBY" firstAttribute="bottom" secondItem="I4j-ef-bbC" secondAttribute="bottom" constant="100" id="r5F-fa-SJt"/>
+                            <constraint firstItem="zKZ-TY-Ofj" firstAttribute="top" secondItem="I4j-ef-bbC" secondAttribute="bottom" constant="1.5" id="rUh-LL-BUs"/>
                             <constraint firstItem="I4j-ef-bbC" firstAttribute="leading" secondItem="6Tk-OE-BBY" secondAttribute="leading" id="rkh-Yc-8fD"/>
                             <constraint firstItem="I4j-ef-bbC" firstAttribute="height" secondItem="6Tk-OE-BBY" secondAttribute="height" multiplier="0.6" id="vmE-ts-G8U"/>
                         </constraints>
