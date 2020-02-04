@@ -1,6 +1,6 @@
 import Foundation
 
-struct Board{
+class Board{
     
     var cells:Cells<Cell>
     var winner:Player?
@@ -18,11 +18,11 @@ struct Board{
         currentMove = 0
     }
     
-    mutating func clearCells(){
+    func clearCells(){
         cells = Cells(rows: 3, columns: 3)
     }
     
-    mutating func restart(){
+    func restart(){
         clearCells()
         winner = nil
         currentPlayer = Player.X
@@ -72,27 +72,27 @@ struct Board{
         return true
     }
     
-    mutating func flipSide(){
+    func flipSide(){
         currentPlayer = (currentPlayer == Player.X) ? Player.O : Player.X
     }
     
     //when users move back and forth with buttons, if they choose a new move
     //then the game will continue from that move, and all moves that come following
     //that move will be deleted.
-    mutating func deleteMoveAfterCurrentMove(){
+    func deleteMoveAfterCurrentMove(){
         if currentMove < game.moves.count{
             game.setMoves(moves: Array(game.moves[0..<currentMove]))
         }
     }
     
-    mutating func addMoveToCurrentGame(player:Player, row:Int, column:Int){
+    func addMoveToCurrentGame(player:Player, row:Int, column:Int){
         game.addMove(move: Move(player: player, state: state, row: row, column: column))
         currentMove += 1
         game.setCurrentMove(currentMove: currentMove)
         
     }
     
-    mutating func makeOneMove(row:Int, column:Int)->Player?{
+    func makeOneMove(row:Int, column:Int)->Player?{
         var player:Player? = nil
         if isCellValidForPlayed(row: row, column: column){
             deleteMoveAfterCurrentMove()
@@ -110,19 +110,40 @@ struct Board{
         return player
     }
     
-    mutating func clearOneCell(row:Int, column:Int){
+    func clearOneCell(row:Int, column:Int){
         cells[row, column] = nil
     }
     
-    mutating func fillOneCell(player:Player, row:Int, column:Int){
+    func fillOneCell(player:Player, row:Int, column:Int){
         if isCellEmpty(row: row, column: column){
             cells[row, column] = Cell(player: player)
         }
     }
     
-    mutating func setCurrentMove(currentMove:Int){
+    func setCurrentMove(currentMove:Int){
         self.currentMove = currentMove
         game.setCurrentMove(currentMove: currentMove)
+    }
+    
+    func save(){
+        guard let data = try? JSONEncoder().encode(game) else {
+            print("error")
+            return
+            
+        }
+        UserDefaults.standard.set(data, forKey: "save")
+    }
+    
+    func load(){
+        guard let data = UserDefaults.standard.data(forKey: "save") else {
+            print("load error")
+            return
+        }
+        game = try? JSONDecoder().decode(Game.self, from: data)
+    }
+    
+    func setState(state:State){
+        self.state = state
     }
     
 }

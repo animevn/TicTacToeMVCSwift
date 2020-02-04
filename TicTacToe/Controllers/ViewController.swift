@@ -4,7 +4,7 @@ class ViewController: UIViewController {
 
     @IBOutlet weak var uvBoard: UIView!
     @IBOutlet weak var lbInfo: UILabel!
-    var board:Board = Board()
+    var board:Board!
     var player:Player?
     
     func clearBoard(){
@@ -29,9 +29,53 @@ class ViewController: UIViewController {
         handleLabelInfo()
     }
     
+    func clearButton(move:Move){
+        let tag = "\(move.row + 1)\(move.column + 1)"
+        guard let tagValue = Int(tag) else {return}
+        let button = uvBoard.viewWithTag(tagValue) as! UIButton
+        button.setTitle("", for: .normal)
+    }
+    
+    func fillButton(move:Move){
+        let tag = "\(move.row + 1)\(move.column + 1)"
+        guard let tagValue = Int(tag) else {return}
+        let button = uvBoard.viewWithTag(tagValue) as! UIButton
+        button.setTitle(move.player.description, for: .normal)
+    }
+    
+    func handleLabelEachMove(move:Move){
+        if move.state == State.HasResult{
+            lbInfo.text = "\(move.player.description) wins!!!"
+        }
+        if move.state == State.Draw{
+            lbInfo.text = "Draws!!!"
+        }
+        handleLabelInfo()
+    }
+    
+    func moveToCurrentMove(currentMove:Int){
+        for i in 0..<currentMove{
+            let move = board.game.moves[i]
+            fillButton(move: move)
+            board.fillOneCell(player: move.player, row: move.row, column: move.column)
+            board.flipSide()
+            board.setState(state: move.state)
+            handleLabelEachMove(move: move)
+        }
+        board.setCurrentMove(currentMove: currentMove)
+    }
+    
+    func loadGame(){
+        board.load()
+        moveToCurrentMove(currentMove: board.game.currentMove)
+    }
+    
     override func viewDidLoad() {
         super.viewDidLoad()
-        resetBoard()
+        board.restart()
+        clearBoard()
+        handleLabelInfo()
+        loadGame()
     }
     
     func makeGameMove(button:UIButton){
